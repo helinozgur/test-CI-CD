@@ -1,26 +1,44 @@
-name: Auto Pull and Run on Server
+name: Python CI/CD
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Trigger server script
-        env:
-          SERVER_IP: 10.36.5.44
-          SERVER_USER: pam_golive
-          SERVER_PATH: /home/pam_golive/test-CI-CD
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
         run: |
-          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "
-          cd $SERVER_PATH &&
-          git pull origin main &&
-          python3 hello.py
-          "
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run tests
+        run: |
+          echo "Running tests (add real tests here)"
+          python hello.py
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy application
+        run: |
+          echo "Deploying application"
+          # Add deployment steps here, e.g., copying to a server or triggering another deployment action.
