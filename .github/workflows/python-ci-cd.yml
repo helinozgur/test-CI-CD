@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Trigger server pull
         run: |
-          ssh -o StrictHostKeyChecking=pam_golive@10.36.5.44 "
+          ssh -o StrictHostKeyChecking=no pam_golive@10.36.5.44 "
           cd /path/to/your/repo &&
           git pull origin main &&
           python3 hello.py
