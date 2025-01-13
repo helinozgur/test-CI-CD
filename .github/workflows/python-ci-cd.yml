@@ -1,19 +1,26 @@
-name: Deploy on Server
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - run: npm install
+    - run: npm test
+
   deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Trigger server pull
-        run: |
-          ssh -o StrictHostKeyChecking=no pam_golive@10.36.5.44 "
-          cd /path/to/your/repo &&
-          git pull origin main &&
-          python3 hello.py
-          "
+    - name: Trigger webhook
+      run: |
+        curl -X POST -H "Content-type: application/json" --data "{}" http://10.36.5.44:5000/webhook
