@@ -11,4 +11,4 @@ jobs:
     steps:
     - name: Trigger webhook
       run: |
-        curl -X POST -H "Content-type: application/json" --data "{}" http://localhost:5000/webhook
+        curl -X POST -H "Content-type: application/json" --data "{}" http://10.36.5.44:5000/webhook
