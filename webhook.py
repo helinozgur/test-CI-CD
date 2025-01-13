@@ -4,5 +4,5 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    os.system('cd /test-CI-CD && git pull')
+    os.system('cd /home/pam_golive/test-CI-CD && git pull')
     return 'Success', 200
