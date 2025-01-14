@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     
-    steps:
-    - name: Trigger webhook
-      run: |
-        curl -X POST http://45.84.16.160:5000/webhook -H "Content-Type: application/json" -d '{}'
+    steps: 
+    - name: Test Network Connectivity 
+    run: | 
+      ping -c 4 45.84.16.160
