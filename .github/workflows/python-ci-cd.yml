@@ -5,10 +5,11 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
+  test-connecton:
     runs-on: ubuntu-latest
-    
-    steps: 
-    - name: Test Network Connectivity 
-    run: | 
-      ping -c 4 45.84.16.160
+
+    steps:
+    - name: Test Network Connectivity
+      run: |
+        ping -c 4 45.84.16.160
+i
