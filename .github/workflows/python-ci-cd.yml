@@ -6,11 +6,14 @@ on:
       - main
 
 jobs:
-  test-connection:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Test Network Connectivity
-        run: python hello.py
+      - name: Deploy to Server
+        run: |
+          ssh -o StrictHostKeyChecking=no pam_golive@10.36.5.44 "cd /path/to/your/repo && git pull origin main"
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
