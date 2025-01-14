@@ -1,15 +1,13 @@
+---
 name: Auto Pull
-
 on:
   push:
-    branches: [main]
-
+    branches:
+      - main
 jobs:
   test-connecton:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Test Network Connectivity
-      run: |
-        ping -c 4 45.84.16.160
-i
+      - name: Test Network Connectivity
+        run: |
+          ping -c 4 45.84.16.160
