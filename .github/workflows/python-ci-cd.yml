@@ -1,8 +1,9 @@
-name: CI
+name: Auto Pull
 
 on:
   push:
-    branches: [main]
+  branches: 
+    - main
 
 jobs:
   deploy:
@@ -11,4 +12,4 @@ jobs:
     steps:
     - name: Trigger webhook
       run: |
-        curl -X POST -H "Content-type: application/json" --data "{}" http://10.36.5.44:5000/webhook
+        curl -X POST http://10.36.5.44:5000/webhook -H "Content-Type: application/json" -d '{}'
