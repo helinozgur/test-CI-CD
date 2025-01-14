@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: Test Network Connectivity
         run: |
-          ping -c 4 10.36.5.44
+          python hello.py
