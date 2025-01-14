@@ -14,6 +14,6 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -o StrictHostKeyChecking=no pam_golive@10.36.5.44 "cd /path/to/your/repo && git pull origin main"
+          ssh -o StrictHostKeyChecking=no pam_golive@10.36.5.44 "cd test-CI-CD && git pull origin main"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
